@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHODBHANGDA GC | Shinchan Anime Hub</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #090a10;
+            --anime-purple: #9d4edd;
+            --anime-pink: #ff2a85;
+            --anime-cyan: #00f0ff;
+            --anime-yellow: #ffb703;
+            --glass-card: rgba(15, 17, 30, 0.85);
+            --glass-border: rgba(255, 42, 133, 0.35);
+            --text-main: #ffffff;
+            --text-muted: #b8c1ec;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(to bottom, rgba(9, 10, 16, 0.85), rgba(9, 10, 16, 0.95)),
+                radial-gradient(circle at 50% 20%, rgba(255, 183, 3, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 50%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1.5px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(9, 10, 16, 0.85);
+            border-bottom: 2px solid var(--anime-pink);
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.4);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--anime-cyan), var(--anime-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--anime-cyan);
+            text-shadow: 0 0 8px var(--anime-cyan);
+        }
+
+        .btn-gc {
+            background: linear-gradient(135deg, var(--anime-pink), var(--anime-purple));
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid var(--anime-cyan);
+        }
+
+        .btn-gc:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid var(--anime-cyan);
+            color: var(--anime-cyan);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--anime-pink), var(--anime-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--anime-cyan), var(--anime-pink));
+            margin: 12px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--anime-pink);
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 90px;
+            padding: 0 2rem;
+        }
+
+        .member-card {
+            background: var(--glass-card);
+            border: 2px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--anime-cyan);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+        }
+
+        .leader-card {
+            border-color: var(--anime-yellow) !important;
+            box-shadow: 0 0 20px rgba(255, 183, 3, 0.3);
+        }
+
+        .leader-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--anime-yellow);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .member-img-wrap {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--anime-pink);
+            box-shadow: 0 0 15px var(--anime-pink);
+            background: #151622;
+        }
+
+        .leader-card .member-img-wrap {
+            border-color: var(--anime-yellow);
+            box-shadow: 0 0 20px var(--anime-yellow);
+        }
+
+        .toji-card .member-img-wrap {
+            border-color: var(--anime-cyan);
+            box-shadow: 0 0 20px var(--anime-cyan);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .member-role {
+            color: var(--anime-cyan);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .forms-container {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-card);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(9, 10, 16, 0.85);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--anime-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--anime-purple), var(--anime-pink));
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .alert-box {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid var(--anime-cyan);
+            color: var(--anime-cyan);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <div class="logo">CHODBHANGDA</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#members">GC Members</a></li>
+                <li><a href="#join">Join GC</a></li>
+                <li><a href="#help">Support</a></li>
+            </ul>
+            <a href="https://ig.me/j/cOnOxRQwyxyLa3FG/" target="_blank" class="btn-gc">
+                <i class="fa-brands font-awesome-flag"></i> Join GC
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="hero-badge"><i class="fa-solid fa-fire"></i> Official Shinchan Squad Hub</div>
+        <h1>Welcome To <span>CHODBHANGDA</span></h1>
+        <p>The ultimate wild and crazy Shinchan-themed Instagram GC! Led by Himawari and our legendary crew.</p>
+        <a href="https://ig.me/j/cOnOxRQwyxyLa3FG/" target="_blank" class="btn-gc" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+            Open Instagram Link <i class="fa-solid fa-bolt" style="margin-left: 8px;"></i>
+        </a>
+    </section>
+
+    <!-- GC Members Section -->
+    <section id="members">
+        <h2 class="section-title">GC Squad Members</h2>
+        <div class="members-grid">
+
+            <!-- GC Leader: Himawari -->
+            <div class="member-card leader-card">
+                <span class="leader-badge"><i class="fa-solid fa-crown"></i> GC Leader</span>
+                <div class="member-img-wrap">
+                    <img src="https://i.pinimg.com/736x/a5/96/9a/a5969ab446acf43a96ddd6b9b5069fea.jpg" alt="Himawari PFP" class="member-img">
+                </div>
+                <div class="member-name" style="color: var(--anime-yellow);">Himawari</div>
+                <div class="member-role">GC Leader (Shinchan's Sister)</div>
+            </div>
+
+            <!-- Solo (Dhruv Awasthi) with Toji Fushiguro PFP -->
+            <div class="member-card toji-card">
+                <div class="member-img-wrap">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-akVxRB1wYffaFoanEzQOa2NNGB2JdLK8yrKNufROGj_hUEtdd0KZuEg&s=10" alt="Solo Toji PFP" class="member-img">
+                </div>
+                <div class="member-name" style="color: var(--anime-cyan);">Solo</div>
+                <div class="member-role">Shinchan/ All rounder</div>
+            </div>
+
+            <!-- Anees: Kazama PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://preview.redd.it/will-kazama-succeed-in-marrying-himawari-v0-dqmn5tq8iskf1.jpeg?auto=webp&s=d9e901fbbad65a9a60a6269f5b2161f5a233816d" alt="Anees Kazama PFP" class="member-img">
+                </div>
+                <div class="member-name">Anees</div>
+                <div class="member-role" style="color: var(--anime-pink);"><i class="fa-solid fa-fire"></i> Kazama (Official Roaster)</div>
+            </div>
+
+            <!-- Jay: Masao PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://i.pinimg.com/236x/78/c2/e8/78c2e8ae2b35bba526493e9a5b11426c.jpg" alt="Jay Masao PFP" class="member-img">
+                </div>
+                <div class="member-name">Jay</div>
+                <div class="member-role" style="color: #a78bfa;"><i class="fa-solid fa-face-smile"></i> Masao (Sticker Man)</div>
+            </div>
+
+            <!-- Saud Bhai: Bou PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://i.redd.it/w5bkoanepf3h1.jpeg" alt="Saud Bou PFP" class="member-img">
+                </div>
+                <div class="member-name">Saud Bhai</div>
+                <div class="member-role">Bo-chan / Core Executive</div>
+            </div>
+
+            <!-- Aimen: Nanny (Nene) PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://i.pinimg.com/564x/42/de/41/42de41cbd05b6f7d496e98a59a875077.jpg" alt="Aimen Nanny PFP" class="member-img">
+                </div>
+                <div class="member-name">Aimen</div>
+                <div class="member-role">Ichan (Vibe Controller)</div>
+            </div>
+
+            <!-- Vishal: Cheetah PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://static.wikia.nocookie.net/crayonshinchan/images/6/69/16bhi6h.jpg/revision/latest?cb=20161208154806" alt="Vishal Cheetah PFP" class="member-img">
+                </div>
+                <div class="member-name">Vishal</div>
+                <div class="member-role">Cheetah / Squad Titan</div>
+            </div>
+ <!-- Aimen: Nanny (Nene) PFP -->
+            <div class="member-card">
+                <div class="member-img-wrap">
+                    <img src="https://www.hlj.com/productimages/sab/sab90445_1.jpg" alt="Aimen Nanny PFP" class="member-img">
+                </div>
+                <div class="member-name">Elira</div>
+                <div class="member-role">Nene (Vibe Controller)</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Forms Section -->
+    <div class="forms-container">
+
+        <!-- Join Form -->
+        <section class="glass-panel" id="join">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-user-plus" style="color: var(--anime-cyan);"></i> Apply to Join</h3>
+            <form id="joinForm">
+                <div class="form-group">
+                    <label for="joinName">Your Name / Shinchan Alias</label>
+                    <input type="text" id="joinName" class="form-control" placeholder="Enter your nickname" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinHandle">Instagram Handle</label>
+                    <input type="text" id="joinHandle" class="form-control" placeholder="@your_username" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinReason">Why do you want to join our squad?</label>
+                    <textarea id="joinReason" class="form-control" placeholder="Tell Himawari and the team about yourself..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">SEND JOIN REQUEST</button>
+                <div id="joinAlert" class="alert-box">Request submitted! Himawari or an admin will review your request on Instagram.</div>
+            </form>
+        </section>
+
+        <!-- Help Desk Form -->
+        <section class="glass-panel" id="help">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-question" style="color: var(--anime-pink);"></i> Support & Issues</h3>
+            <form id="helpForm">
+                <div class="form-group">
+                    <label for="helpHandle">Your Instagram Handle</label>
+                    <input type="text" id="helpHandle" class="form-control" placeholder="@your_username" required>
+                </div>
+                <div class="form-group">
+                    <label for="issueType">Issue Category</label>
+                    <select id="issueType" class="form-control">
+                        <option value="link">Invite Link Broken</option>
+                        <option value="member">Report an Issue</option>
+                        <option value="other">General Inquiry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="helpDetails">Describe the Issue</label>
+                    <textarea id="helpDetails" class="form-control" placeholder="Describe the issue you're facing..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">SUBMIT ISSUE REPORT</button>
+                <div id="helpAlert" class="alert-box">Issue submitted! Our team will look into it shortly.</div>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- JavaScript Handlers -->
+    <script>
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('joinAlert').style.display = 'block';
+            this.reset();
+        });
+
+        document.getElementById('helpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('helpAlert').style.display = 'block';
+            this.reset();
+        });
+    </script>
+</body>
+</html>
